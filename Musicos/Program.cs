@@ -1,4 +1,4 @@
-﻿class Musico
+﻿abstract class Musico
 {
     public string Nombre { get; set; }
    
@@ -7,13 +7,17 @@
         
     }
     public void Saluda()=>Console.WriteLine($"Hola, soy {Nombre}");
-    public virtual void Toca()=>Console.WriteLine($"Estoy tocando");
+    public /*virtual*/ abstract void Toca(); //=>Console.WriteLine($"Estoy tocando");
     
 }
 class Baterista:Musico
 {
     public string Bateria{get;set;}
     public Baterista(string n, string bateria):base(n)=>Bateria=bateria;
+    public override void Toca() //Para implementar metodos abrtractos se debe de usar el override
+{
+    Console.WriteLine($"{Nombre} Tocando su instrumento");
+}
     
 }
 class Bajista:Musico
@@ -34,7 +38,7 @@ internal class Program
 List<Musico> SodaStereo = new List<Musico>();
 SodaStereo.Add(new Bajista("Zeta", "MusicMan"));
 SodaStereo.Add(new Baterista("Charlie", "Tama")); //Esto se le llama polimorfismo
-
+SodaStereo.Add(new Musico("Juan"));        
 foreach (var m in SodaStereo)
 {
     m.Saluda();
