@@ -1,13 +1,13 @@
 ﻿class Musico
 {
     public string Nombre { get; set; }
-    public string Instrumento { get; set; }
-    public Musico (string n, string instrumento){
+   
+    public Musico (string n){
         Nombre = n;
-        Instrumento = instrumento;
+        
     }
-    public void Saluda()=>Console.WriteLine($"Hola, soy {Nombre} y toco {Instrumento}");
-    public virtual void Toca()=>Console.WriteLine($"Estoy tocando {Instrumento}");
+    public void Saluda()=>Console.WriteLine($"Hola, soy {Nombre}");
+    public virtual void Toca()=>Console.WriteLine($"Estoy tocando");
     
 }
 class Baterista:Musico
@@ -18,11 +18,11 @@ class Baterista:Musico
 }
 class Bajista:Musico
 {
-    public string Bajo {get;set;}
-    public Bajista(string n, string bajo):base(n)=> Bajo= bajo;
+    public string bajo {get;set;}
+    public Bajista(string n, string b):base(n)=> bajo= b;
     public override void Toca()
 {
-    Console.WriteLine($"{Nombre} Tocando su {bajo}");
+    Console.WriteLine($"{Nombre} Tocando su instrumento");
 }
     
 }
@@ -32,7 +32,7 @@ internal class Program
     private static void Main(string[] args)
     {
 List<Musico> SodaStereo = new List<Musico>();
-SodaStereo.Add(new Bajo("Zeta", "MusicMan"));
+SodaStereo.Add(new Bajista("Zeta", "MusicMan"));
 SodaStereo.Add(new Baterista("Charlie", "Tama")); //Esto se le llama polimorfismo
 
 foreach (var m in SodaStereo)
